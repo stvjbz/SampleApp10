@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper  extends SQLiteOpenHelper {
     private static final String DBNAME = "sampleapp10.db";
     private static final int DBVERSION = 1;
-    private static final String TABLE_SAMPLEAPP10= "sampleapp10";
+    public static final String TABLE_SAMPLEAPP10= "sampleapp10";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DATE = "date";
     public static final String COLUMN_ELAPSEDTIME = "eltime";
