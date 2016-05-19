@@ -42,7 +42,7 @@ public class AddressTaskLoader extends AsyncTaskLoader {
     }
 
     @Override
-    protected  void onStartLoading () {
+    protected void onStartLoading () {
         forceLoad();
     }
 
