@@ -8,4 +8,7 @@ import android.app.DialogFragment;
 public class WifiConfirmDialogFragment extends DialogFragment {
     public static final String ARG_TITLE = "title";
     private static final String ARG_MESSAGE = "message";
+
+    private int mTitle;
+    private int mMessage;
 }
