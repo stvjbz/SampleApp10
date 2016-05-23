@@ -46,11 +46,10 @@ public class WifiConfirmDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                ((MapsActivity) getActivity()).wifiOff();
+                                ((MapsActivity)getActivity()).wifiOff();
                             }
                         }
                 )
                 .create();
-        )
     }
 }
