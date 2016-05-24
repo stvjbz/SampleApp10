@@ -1,9 +1,20 @@
 package com.stvjbz.sampleapp10;
 
+import android.location.Address;
+import android.location.Location;
+import android.location.LocationListener;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Chronometer;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -11,9 +22,39 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener,
+        LoaderManeger.LoaderCallbacks<Address> {
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 2;
+    private static final int ADDRESSLOADER_ID = 0;
+    // INTERVAL:500, FASTESTINTERVAL:16 できれいな線が描ける
+    private static final int FASTERSINTERVAL = 16;
+
 
     private GoogleMap mMap;
+    private GoogleAPiClient mGoogleApiClient;
+    private static final LocationRequest REQUEST = LocationRequest.create()
+            .setInterval(INTERVAL)  // 位置情報の更新間隔をミリ秒で設定
+            .setFastestInterval(FASTERSINTERVAL)
+            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // 位置情報取得要求の優先順位
+    private FusedLocationProviderApi mFusedLocationProviderApi = LocationServices.FusedLocationApi;
+    private List<LatLng> mRunList = new ArrayList<LatLng>();
+    private WifiManager mWifi;
+    private boolean mWifi;
+    private boolean mWifiOff = false;
+    private long mStartTimeMillis;
+    private double mMeter = 0.0;
+    private double mSpeed = 0.0;
+    private DatabaseHelper mDbHelper;
+    private boolean mStart = false;
+    private boolean mFirst = false;
+    private boolean mStop = false;
+    private Chronometer mChronometer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +97,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void wifiOff() {
         mWifi.setWifiEnabled(false);
         mWifiOff=true;
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
