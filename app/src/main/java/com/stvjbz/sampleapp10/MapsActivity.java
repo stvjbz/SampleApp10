@@ -53,9 +53,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private boolean mStart = false;
     private boolean mFirst = false;
     private boolean mStop = false;
+    private boolean mAsked = false;
     private Chronometer mChronometer;
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // メンバー変数が初期化されることへの対処
+        outState.putBoolean("ASKED", mAsked);
+   }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mAsked = savedInstanceState.getBoolean("ASKED");
+    }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
