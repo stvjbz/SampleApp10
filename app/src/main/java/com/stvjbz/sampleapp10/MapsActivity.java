@@ -68,7 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onRestoreInstanceState(savedInstanceState);
         mAsked = savedInstanceState.getBoolean("ASKED");
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
